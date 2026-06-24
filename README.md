@@ -53,74 +53,43 @@ O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript, PHP e MySQL**.
 - **MySQL** → Armazenamento e gerenciamento dos dados.
 
 ---
-
 ## 🗄️ Banco de Dados
 
-Banco utilizado:
+O projeto utiliza o banco de dados **TechForge** em MySQL.
+
+O arquivo `schema.sql` contém:
+
+- Criação do banco de dados
+- Criação das tabelas:
+  - Categoria
+  - Produto
+- Inserção das categorias iniciais
+- Relacionamento entre produtos e categorias
+
+Modelo do relacionamento:
 
 
-TechForge
-
-
-### Tabelas:
-
-### Categoria
-Armazena as categorias dos componentes.
-
-Campos:
-
-
-id_categoria
-nome_categoria
-
-
-### Produto
-Armazena os produtos cadastrados.
-
-Campos:
-
-
-id_produto
-nome
-qtdInicial
-valorUnt
-id_categoria
-
-
-Relacionamento:
-
-
-Produto -> Categoria
-
-
+Categoria (1) ---- (N) Produto
 Cada produto pertence a uma categoria através de chave estrangeira.
 
 ---
-
 ## 📂 Estrutura do Projeto
 
 
 TechForge/
 │
-├── index.php
-├── css/
-│ └── style.css
+├── index.php # Página principal / Dashboard
+├── cadastro.php # Cadastro de produtos
+├── editar.php # Edição de produtos
+├── estoque.php # Movimentação de estoque
+├── data.php # Listagem e dados dos produtos
+├── excluir.php # Exclusão de produtos
+├── conexao.php # Conexão com banco MySQL
+├── conclusao.php # Finalização do fluxo do sistema
 │
-├── js/
-│ └── script.js
+├── schema.sql # Script de criação do banco de dados
 │
-├── pages/
-│ ├── dashboard.php
-│ ├── produtos.php
-│ ├── cadastro.php
-│ └── estoque.php
-│
-├── config/
-│ └── conexao.php
-│
-└── database/
-└── techforge.sql
-
+└── README.md
 
 ---
 
