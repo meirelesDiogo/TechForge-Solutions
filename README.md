@@ -1,6 +1,9 @@
+Aqui tem o conteúdo completo do README.md atualizado e formatado para que possa copiar facilmente para o seu projeto:
+
+Markdown
 # 🖥️ TechForge - Sistema de Gestão de Ativos de Hardware
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
 ![HTML](https://img.shields.io/badge/HTML-5-orange)
 ![CSS](https://img.shields.io/badge/CSS-3-blue)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
@@ -11,7 +14,7 @@
 
 O **TechForge** é um Sistema de Gestão de Ativos de Hardware (SGAH) desenvolvido para auxiliar no controle de estoque de componentes de informática.
 
-A aplicação permite cadastrar, visualizar, editar, excluir e movimentar produtos, substituindo controles manuais por um sistema integrado com banco de dados.
+A aplicação permite cadastrar, visualizar, editar, excluir e movimentar produtos, substituindo controlos manuais por um sistema integrado com base de dados.
 
 O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript, PHP e MySQL**.
 
@@ -44,7 +47,7 @@ O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript, PHP e MySQL**.
 ### Front-end
 - **HTML5** → Estrutura das páginas.
 - **CSS3** → Estilização e responsividade.
-- **JavaScript** → Interações e validações da interface.
+- **JavaScript** → Interações e validações da interface (`script.js` / `style.css`).
 
 ### Back-end
 - **PHP** → Comunicação com o servidor e regras do sistema.
@@ -53,12 +56,11 @@ O projeto foi desenvolvido utilizando **HTML, CSS, JavaScript, PHP e MySQL**.
 - **MySQL** → Armazenamento e gerenciamento dos dados.
 
 ---
+
 ## 🗄️ Banco de Dados
 
 O projeto utiliza o banco de dados **TechForge** em MySQL.
-
 O arquivo `schema.sql` contém:
-
 - Criação do banco de dados
 - Criação das tabelas:
   - Categoria
@@ -67,79 +69,78 @@ O arquivo `schema.sql` contém:
 - Relacionamento entre produtos e categorias
 
 Modelo do relacionamento:
-
-
-Categoria (1) ---- (N) Produto
+`Categoria (1) ---- (N) Produto`
 Cada produto pertence a uma categoria através de chave estrangeira.
 
 ---
+
 ## 📂 Estrutura do Projeto
 
+Abaixo está a estrutura atualizada dos arquivos do projeto conforme organizados no diretório raiz:
 
 TechForge/
 │
-├── index.php # Página principal / Dashboard
-├── cadastro.php # Cadastro de produtos
-├── editar.php # Edição de produtos
-├── estoque.php # Movimentação de estoque
-├── data.php # Listagem e dados dos produtos
-├── excluir.php # Exclusão de produtos
-├── conexao.php # Conexão com banco MySQL
-├── conclusao.php # Finalização do fluxo do sistema
-│
-├── schema.sql # Script de criação do banco de dados
-│
-└── README.md
+├── cadastro.php       # Página de cadastro de novos componentes de hardware
+├── conclusao.php      # Tela de confirmação/finalização do fluxo do sistema
+├── conexao.php        # Script de conexão com o banco de dados MySQL
+├── data.php           # Manipulação, processamento e listagem de dados dos produtos
+├── Demanda.docx       # Documento com o levantamento de requisitos e escopo
+├── editar.php         # Página para edição de informações de produtos existentes
+├── entrada.php        # Interface/Script para registro de entrada de itens no estoque
+├── estoque.php        # Painel geral de visualização e controle do estoque
+├── excluir.php        # Script responsável pela exclusão de registros
+├── index.php          # Página principal / Dashboard de indicadores
+├── README.md          # Documentação do projeto (este arquivo)
+├── saida.php          # Interface/Script para registro de saída de itens do estoque
+├── schema.sql         # Script SQL de criação do banco de dados e tabelas
+├── script.js          # Lógica Front-end, interações dinâmicas e validações
+└── style.css          # Folha de estilos CSS para design visual e responsividade
+
 
 ---
 
 ## ⚙️ Como executar o projeto
 
 ### 1. Clone o repositório
-
 ```bash
-git clone https://github.com/seuusuario/TechForge.git
+git clone [https://github.com/seuusuario/TechForge.git](https://github.com/seuusuario/TechForge.git)
 2. Configure o banco de dados
+Abra a sua ferramenta de gerenciamento MySQL (como o phpMyAdmin) e execute o script contido no arquivo raiz:
 
-Abra o MySQL e execute o arquivo:
-
-database/techforge.sql
-
+schema.sql
 Ele irá criar:
 
-Banco TechForge
+Banco de dados TechForge
+
 Tabela Categoria
+
 Tabela Produto
-Categorias iniciais
+
+Categorias iniciais para testes
+
 3. Configure a conexão
+Edite as credenciais diretamente no arquivo raiz:
 
-Edite o arquivo:
+conexao.php
+Exemplo de configuração padrão:
 
-config/conexao.php
-
-Exemplo:
-
+PHP
 $host = "localhost";
 $user = "root";
 $senha = "";
 $db = "TechForge";
-4. Inicie o servidor
+4. Inicie o servidor local
+Se estiver utilizando XAMPP ou WAMP:
 
-Com XAMPP/WAMP:
+Mova ou copie a pasta do projeto para o diretório de servidores locais (ex: htdocs ou www).
 
-Coloque o projeto dentro:
+Certifique-se de que os módulos Apache e MySQL estão ativos no painel do seu servidor.
 
-htdocs
+Acesse no navegador:
 
-Acesse:
-
-localhost/TechForge
+http://localhost/TechForge
 🎯 Objetivo
-
-Criar uma solução simples e eficiente para gerenciamento de componentes de hardware, permitindo maior organização, controle de estoque e facilidade na manutenção dos dados.
+Criar uma solução simples, moderna e eficiente para o gerenciamento de componentes de hardware, permitindo maior organização no inventário, rastreabilidade na movimentação (entradas e saídas) e facilidade na tomada de decisões.
 
 👨‍💻 Desenvolvedor
-
-Diogo Alexandre
-
-Desenvolvedor Full Stack em formação 🚀
+Diogo Alexandre Desenvolvedor Full Stack em formação 🚀
