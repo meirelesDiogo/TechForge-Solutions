@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TechForge Solutions | Página Inicial</title>
+<title>TechForge Solutions | Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -18,6 +18,7 @@
 
 <nav>
 
+
 <div class="logo">
 TechForge
 </div>
@@ -26,8 +27,11 @@ TechForge
 <div class="links">
 
 <a href="index.php">Home</a>
+
 <a href="data.php">DataGrid</a>
+
 <a href="cadastro.php">Cadastro de Produtos</a>
+
 <a href="estoque.php">Movimentação Estoque</a>
 
 <a class="sair" href="logout.php">
@@ -51,18 +55,12 @@ Dashboard Estoque
 
 
 
-<section class="cards">
-
-
-<div class="card">
-
-<h3>Total de Itens Cadastrados</h3>
-
-
 <?php
 
 include_once('conexao.php');
 
+
+// TOTAL DE PRODUTOS
 
 $busca = mysqli_query(
 $conexao,
@@ -72,29 +70,63 @@ $conexao,
 
 $dados = mysqli_fetch_assoc($busca);
 
+
 $total = $dados['total_produtos'];
 
 
-echo "<h2>$total</h2>";
 
+
+// ESTOQUE BAIXO
+
+$consulta = mysqli_query(
+$conexao,
+"SELECT COUNT(*) AS estoque_baixo 
+FROM Produto 
+WHERE qtdInicial <= 5"
+);
+
+
+$dados = mysqli_fetch_assoc($consulta);
+
+
+$baixo = $dados['estoque_baixo'];
 
 ?>
+
+
+<section class="cards">
+
+
+
+<div class="card">
+
+
+<h3>
+Total de Itens Cadastrados
+</h3>
+
+
+<h2 
+class="contador"
+data-valor="<?php echo $total; ?>">
+0
+</h2>
 
 
 <div class="barra">
 
 <div 
 class="progresso"
-style="width: <?php echo min($total * 10,100); ?>%"
->
-
+style="
+width:<?php echo min($total * 10,100); ?>%;
+">
 </div>
 
 </div>
 
 
 <p>
-Quantidade total cadastrada
+Produtos cadastrados no sistema
 </p>
 
 
@@ -104,46 +136,36 @@ Quantidade total cadastrada
 
 
 
-
-<div class="card alerta">
-
-
-<h3>Itens com Estoque Baixo</h3>
+<div class="card">
 
 
-
-<?php
-
-
-$consulta = mysqli_query(
-$conexao,
-"SELECT COUNT(*) AS estoque_baixo 
-FROM Produto 
-WHERE qtdInicial <=5"
-);
+<h3>
+Itens com Estoque Baixo
+</h3>
 
 
-$dados = mysqli_fetch_assoc($consulta);
+<h2 
+class="contador"
+data-valor="<?php echo $baixo; ?>">
+0
+</h2>
 
-
-$baixo = $dados['estoque_baixo'];
-
-
-echo "<h2>$baixo</h2>";
-
-?>
 
 
 <div class="barra">
 
+
 <div 
 class="progresso baixo"
-style="width: <?php echo min($baixo * 20,100); ?>%"
->
+style="
+width:<?php echo min($baixo * 20,100); ?>%;
+">
 
 </div>
 
+
 </div>
+
 
 
 <p>
@@ -161,6 +183,8 @@ Produtos precisando reposição
 
 
 
+
+
 <section class="estoque">
 
 
@@ -170,48 +194,86 @@ Produtos em alerta
 
 
 
+
 <?php
 
 
-$consulta=mysqli_query(
+$produtos = mysqli_query(
 $conexao,
-"SELECT * FROM Produto WHERE qtdInicial <=5"
+"SELECT * FROM Produto WHERE qtdInicial <= 5"
 );
 
 
 
-if(mysqli_num_rows($consulta)>0){
+if(mysqli_num_rows($produtos) > 0){
 
 
 
-while($linha=mysqli_fetch_array($consulta)){
+while($linha=mysqli_fetch_array($produtos)){
 
 
 
-echo "
+?>
 
-<div class='produto'>
 
-<h3>{$linha['nome']}</h3>
+
+<div class="produto">
+
+
+<div>
+
+
+<h3>
+<?php echo $linha['nome']; ?>
+</h3>
+
 
 <p>
+
 Quantidade:
+
 <span>
-{$linha['qtdInicial']}
+<?php echo $linha['qtdInicial']; ?>
 </span>
-</p>
 
-
-<p>
-Valor:
-R$ ".number_format($linha['valorUnt'],2,",",".")."
 </p>
 
 
 </div>
 
 
-";
+
+<div>
+
+<p>
+
+Valor:
+
+R$
+
+<?php
+
+echo number_format(
+$linha['valorUnt'],
+2,
+",",
+"."
+);
+
+?>
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<?php
 
 }
 
@@ -223,7 +285,9 @@ R$ ".number_format($linha['valorUnt'],2,",",".")."
 echo "
 
 <div class='vazio'>
+
 Nenhum produto com estoque baixo
+
 </div>
 
 ";
@@ -235,12 +299,74 @@ Nenhum produto com estoque baixo
 ?>
 
 
+
 </section>
+
 
 
 </main>
 
 
 
+
+
+
+<script>
+
+
+const contadores = document.querySelectorAll(".contador");
+
+
+
+contadores.forEach(contador=>{
+
+
+let valorFinal = Number(
+contador.dataset.valor
+);
+
+
+let atual = 0;
+
+let velocidade = Math.ceil(
+    valorFinal / 100
+);
+
+
+
+let animar = setInterval(()=>{
+
+
+atual += velocidade;
+
+
+
+if(atual >= valorFinal){
+
+atual = valorFinal;
+
+clearInterval(animar);
+
+}
+
+
+
+contador.innerHTML = atual;
+
+
+
+},50);
+
+
+
+});
+
+
+
+</script>
+
+
+
 </body>
+
 </html>
