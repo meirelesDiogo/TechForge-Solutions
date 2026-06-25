@@ -4,34 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechForge Solutions | Cadastro de Produtos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-    <a href="index.php">Home</a>
-    <a href="data.php">DataGrid</a>
-    <a href="cadastro.php">Cadastro de Produtos</a>
-    <a href="estoque.php">Movimentação Estoque</a>
-</nav>
-    <h2>Cadastro De Produtos</h2>
 
-    <form method="post">
+<div class="logo">
+    TechForge
+</div>
 
-    Nome: <input type="text" name="nome" required><br>
-    Quantidade: <input type="number" name="qtd" required><br>
-    Valor Unitário: <input type="number" step="0.01" name="valor"><br>
-    Categoria: <select name="cat" >
-        <?php
+
+<div class="links">
+
+<a href="index.php">Home</a>
+<a href="data.php">DataGrid</a>
+<a href="cadastro.php">Cadastro de Produtos</a>
+<a href="estoque.php">Movimentação Estoque</a>
+
+</div>
+
+</nav><h2 class="titulo">
+Cadastro de Produtos
+</h2>
+
+
+<div class="form-box">
+
+
+<form method="post">
+
+
+<label>
+Nome do Produto
+</label>
+
+<input 
+type="text" 
+name="nome" 
+required>
+
+
+
+<label>
+Quantidade
+</label>
+
+<input 
+type="number" 
+name="qtd" 
+required>
+
+
+
+<label>
+Valor Unitário
+</label>
+
+<input 
+type="number" 
+step="0.01" 
+name="valor">
+
+
+
+<label>
+Categoria
+</label>
+
+
+<select name="cat">
+
+
+<?php
+
 include_once('conexao.php');
-$busca = mysqli_query($conexao, "SELECT * FROM Categoria");
+
+
+$busca = mysqli_query(
+$conexao,
+"SELECT * FROM Categoria"
+);
+
+
 while($linha=mysqli_fetch_array($busca)){
-    echo "<option value='{$linha['id_categoria']}'>".$linha['nome_categoria']."</option>";   
-} ?>
-    </select>
 
-    <input type="submit" value="Cadastrar">
+echo "
+
+<option value='{$linha['id_categoria']}'>
+{$linha['nome_categoria']}
+</option>
+
+";
+
+}
+
+?>
 
 
-    </form>
+</select>
+
+
+
+<button type="submit">
+Cadastrar Produto
+</button>
+
+
+</form>
+
+
+</div>
 
     <?php
     include_once('conexao.php');

@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav>
-    <a href="index.php">Home</a>
-    <a href="data.php">DataGrid</a>
-    <a href="cadastro.php">Cadastro de Produtos</a>
-    <a href="estoque.php">Movimentação Estoque</a>
+<body><nav>
+
+<div class="logo">
+    TechForge
+</div>
+
+<div class="links">
+
+<a href="index.php">Home</a>
+<a href="data.php">DataGrid</a>
+<a href="cadastro.php">Cadastro de Produtos</a>
+<a href="estoque.php">Movimentação Estoque</a>
+
+</div>
+
 </nav>
 <br>
 

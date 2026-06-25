@@ -5,29 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechForge Solutions | Saida de itens</title>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>Registre a Saída do Produto:</h3>
-    <?php
+
+
+<div class="form-box">
+
+
+<h2>
+Registrar Saída
+</h2>
+
+
+<?php
+
 include_once('conexao.php');
+
+
 $id_prod = $_GET['id'];
-$buscar=mysqli_query($conexao, "SELECT * FROM Produto WHERE id_produto = '$id_prod'");
+
+
+$buscar=mysqli_query(
+$conexao,
+"SELECT * FROM Produto WHERE id_produto='$id_prod'"
+);
+
+
 while($linha=mysqli_fetch_array($buscar)){
-echo "<h5>{$linha['nome']}</h5>";
+
+echo "
+<h3 class='produto-nome'>
+{$linha['nome']}
+</h3>
+
+<p class='estoque-atual'>
+Estoque atual: {$linha['qtdInicial']}
+</p>
+";
+
 }
-    ?>
 
-<br><br><br>
+?>
+
+
 <form method="post">
-<label>Quantas Unidades Sairam:</label>
-<input type="number" name="und" required>
-<input type="hidden" name="id_prod" value="<?php echo "$id_prod"; ?>">
 
-<input type="submit" value="Registrar saída">
+
+<label>
+Quantidade que saiu:
+</label>
+
+
+<input 
+type="number"
+name="und"
+required>
+
+
+<input 
+type="hidden"
+name="id_prod"
+value="<?php echo $id_prod ?>">
+
+
+
+<button>
+Registrar Saída
+</button>
 
 
 
 </form>
+
+
+</div>
 <?php
 if($_POST){
 $und = $_POST['und'];

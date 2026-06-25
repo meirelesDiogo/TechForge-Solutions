@@ -34,9 +34,6 @@ TechForge
 
 <a href="estoque.php">Movimentação Estoque</a>
 
-<a class="sair" href="logout.php">
-Sair
-</a>
 
 
 </div>
